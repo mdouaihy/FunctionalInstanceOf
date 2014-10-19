@@ -14,18 +14,17 @@
  * limitations under the License.
  */
 
-package org.bluelys.bluelife.instancetypes;
-
+package org.bluelys.bluelife.safeclasscast;
 
 /**
- * Evaluates a input and returns an output.
+ * Represents a Then action to provide a Then return statement.
  */
-public interface Return<I, R> {
+public interface Then<T> {
     /**
-     * Evaluates the input and returns an output.
+     * Provides a Then Return statement.
      *
-     * @param input the input to evaluate
-     * @return the output.
+     * @param input the return statement
+     * @return a Chain object that allows chaining calls or returning value.
      */
-    R evaluate(I input);
+    <R> Chain<R> then(Return<T, R> input);
 }

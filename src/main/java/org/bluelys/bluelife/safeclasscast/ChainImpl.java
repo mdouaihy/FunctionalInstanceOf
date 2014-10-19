@@ -14,29 +14,37 @@
  * limitations under the License.
  */
 
-package org.bluelys.bluelife.instancetypes;
+package org.bluelys.bluelife.safeclasscast;
 
-public final class ThenImpl<T> implements Then<T> {
 
-    private final Class<T> tClass;
+public final class ChainImpl<R> implements Chain<R> {
     private final Object object;
-    private final Object computed;
+    private final R computed;
 
-    public ThenImpl(Class<T> tClass, Object object, Object computed) {
-        this.tClass = tClass;
+    public ChainImpl(Object object, R computed) {
         this.object = object;
         this.computed = computed;
     }
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public <R> Chain<R> then(Return<T, R> input) {
-        if (computed == null) {
-            if (tClass.isAssignableFrom(object.getClass())) {
-                return new ChainImpl<>(object, input.evaluate((T) object));
-            }
-        }
-        return new ChainImpl<>(object, (R)computed);
+    public <T> Then<T> elseof(Class<T> tClass) {
+        return new ThenImpl<>(tClass, object, computed);
     }
 
+    @Override
+    public R value() {
+        if (computed == null) {
+            throw new IllegalStateException("No adequate code was found for " + object.getClass().getName() + ".");
+        }
+        return computed;
+    }
+
+    @Override
+    public R otherwise(R value) {
+        return computed != null ? computed : value;
+    }
+
+    @Override
+    public R otherwise(Return<Object, R> returnE) {
+        return computed != null ? computed : returnE.evaluate(object);
+    }
 }

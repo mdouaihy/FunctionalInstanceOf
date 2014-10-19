@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package org.bluelys.bluelife.instancetypes;
+package org.bluelys.bluelife.safeclasscast;
 
 
 import org.fest.assertions.Assertions;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import static org.bluelys.bluelife.instancetypes.Instance.instance;
+import static org.bluelys.bluelife.safeclasscast.Instance.instance;
 
 
 public class TestInstanceOf {

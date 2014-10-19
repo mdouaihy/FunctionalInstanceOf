@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.bluelys.bluelife.instancetypes;
+package org.bluelys.bluelife.safeclasscast;
 
 /**
  * This utility is aimed to replace the use of instanceof operator.

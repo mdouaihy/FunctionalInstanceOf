@@ -14,19 +14,18 @@
  * limitations under the License.
  */
 
-package org.bluelys.bluelife.instancetypes;
+package org.bluelys.bluelife.safeclasscast;
 
 
 /**
- * Interface that returns a value.
+ * Evaluates a input and returns an output.
  */
-interface Value<V> {
+public interface Return<I, R> {
     /**
-     * Returns the value.
+     * Evaluates the input and returns an output.
      *
-     * @return the value.
-     *
-     * Throws IllegalStateException if no adequate code was found.
+     * @param input the input to evaluate
+     * @return the output.
      */
-    V value();
+    R evaluate(I input);
 }
